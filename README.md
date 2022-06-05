@@ -10,6 +10,14 @@ I have created a demo project at [CodeSanxbox](https://codesandbox.io/s/redux-to
 ## What is Redux?
 For those who are new to redux, it is a JavaScript library to control your application states. If you have the basic knowledge of react, you know that an application can have multiple states, but maintaining states seperately becomes hassle when the same state has to be used in multiple components. We can use **React Context**, but there is problem with using it. We know that react renders application when a state changes. But we don't want to render the whole application just because of a simple state change somewhere. In this case, redux comes to the rescue.
 
+```mermaid
+graph TD;
+    Store-->UI;
+    UI-->Event_Handler;
+    Event_Handler-->Dispatch;
+    Dispatch-->Store;
+```
+
 What redux does is, it maintains a single source of truth for your application. The states are kept at a store, and you can not modify states directly. You have to dispatch an action to change any state. And reducers are the way to do so. Now, you are confused. What is a store, action and reducers? You should be. Because redux is all about these 3 things. I will try to describe it in simple terms.
 
 ## Describe Redux to a 5 year old
@@ -27,11 +35,11 @@ Let's try to understand it using an example. Our characters name is John.
 **[Action]** : After hearing upon his request, the bank manager asks John for a check and tells one of his employee to take out some money from the vault and update Johns account. This can be compared to an action in redux. Reducers uses action to update states. And actions can be dispatched from anywhere in the application.
 
 ## Installation
-We will be using @reduxjs/toolkit, which is a standard way for writing redux logic now. To get started create a react application with ```create-react-app```. Now we have to install redux packages. Open a terminal within the project directory and type
+We will be using @reduxjs/toolkit, which is a standard way for writing redux logic now. To get started create a react application with ```create-react-app```. Now we have to install redux packages. Open a terminal within the project directory and install using ```npm```
 ```
 npm install @reduxjs/toolkit react-redux
 ```
-or if you use yarn then type
+or if you use ```yarn``` then 
 ```
 yarn add @reduxjs/toolkit react-redux
 ```
