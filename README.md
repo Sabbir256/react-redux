@@ -10,4 +10,18 @@ For those who are new to redux, it is a JavaScript library to control your appli
 What redux does is, it maintains a single source of truth for your application. The states are kept at a store, and you can not modify states directly. You have to dispatch an action to change any state. And reducers are the way to do so. Now, you are confused. What is a store, action and reducers? You should be. Because redux is all about these 3 things. I will try to describe it in simple terms.
 
 ### Describe redux to a 5 year old
-The main 
+The key points to remember about redux are:
+- Store
+- Reducer
+- Action
+
+Let's try to understand it using an example. Our characters name is John.
+
+**[Store]** : John keeps his money in the bank. One day he wanted to take out some of his money from the bank. So, he thought he should go to the bank to do so. He got ready and went to the bank. Banks keep their money in the vault. So think of a redux store as a bank vault. All the application states are kept into it.
+
+**[Reducer]** : Now, after going to the bank, John could get into the vault and take out some money, because it's his money. But that's illegal, and John can not do that. The bank keeps record of how much money is in the vault and how much money is in a persons account. So what John does after going to the bank is, he goes to the managers office and tells him that he needs to take out some money from his account. Here the bank manager can be compared as reducer in redux. States can only be changed using reducers.
+
+**[Action]** : After hearing upon his request, the bank manager asks John for a check and tells one of his employee to take out some money from the vault and update Johns account. This can be compared to an action in redux. Reducers uses action to update states. And actions can be dispatched from anywhere in the application.
+
+### Learning through example
+
