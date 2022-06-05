@@ -1,15 +1,15 @@
-## Getting started with react-redux
+# Getting started with react-redux
 
 Redux is a nightmare to many. I too had problem understanding redux when I started learning it, cause there was a lot of boilerplate code, did not understood the store properly and everything seemed too complex. But I kept at it until I got the hang of it. I will try to describe it in simple terms here, so that anyone can understand the basic of redux.
 
 I have created a demo project at [CodeSanxbox](https://codesandbox.io/s/redux-toolkit-q0qcyp?file=/src/index.js). It's a [todo](https://codesandbox.io/s/redux-toolkit-q0qcyp?file=/src/index.js) app that uses redux to control its state. You can follow along the project.
 
-### What is Redux?
+## What is Redux?
 For those who are new to redux, it is a JavaScript library to control your application states. If you have the basic knowledge of react, you know that an application can have multiple states, but maintaining states seperately becomes hassle when the same state has to be used in multiple components. We can use **React Context**, but there is problem with using it. We know that react renders application when a state changes. But we don't want to render the whole application just because of a simple state change somewhere. In this case, redux comes to the rescue.
 
 What redux does is, it maintains a single source of truth for your application. The states are kept at a store, and you can not modify states directly. You have to dispatch an action to change any state. And reducers are the way to do so. Now, you are confused. What is a store, action and reducers? You should be. Because redux is all about these 3 things. I will try to describe it in simple terms.
 
-### Describe Redux to a 5 year old
+## Describe Redux to a 5 year old
 The key points to remember about redux are:
 - Store
 - Reducer
@@ -23,7 +23,7 @@ Let's try to understand it using an example. Our characters name is John.
 
 **[Action]** : After hearing upon his request, the bank manager asks John for a check and tells one of his employee to take out some money from the vault and update Johns account. This can be compared to an action in redux. Reducers uses action to update states. And actions can be dispatched from anywhere in the application.
 
-### Installation
+## Installation
 We will be using @reduxjs/toolkit, which is a standard way for writing redux logic now. To get started create a react application with ```create-react-app```. Now we have to install redux packages. Open a terminal within the project directory and type
 ```
 npm install @reduxjs/toolkit react-redux
@@ -32,7 +32,7 @@ or if you use yarn then type
 ```
 yarn add @reduxjs/toolkit react-redux
 ```
-### Create a Redux Store
+## Create a Redux Store
 First of all, create a new folder in your ```/src``` directory. Let's name it as redux. Within redux directory create a file named ```/src/redux/store.js```. Paste the code from below within that file.
 ```jsx
 import { configureStore } from '@reduxjs/toolkit';
@@ -42,7 +42,7 @@ export default configureStore({
 ```
 Initially, the reducer object is empty. We can add as many reducers as we want within this object. We will populate it as we go along the project.
 
-### Provide the Redux Store to React 
+## Provide the Redux Store to React 
 Once the store has been created, we need to make it available to the components of the application. If you are familiar with React Context, then you know that we need to wrap the App component with context provider to make it available to all components. Same logic is applied here, but we apply it in the top level, in ```/src/index.js```. We import ```<Provider>``` from react-redux and wrap the ``<App/>`` component with it.
 
 ```JSX
@@ -65,3 +65,42 @@ root.render(
 );
 
 ```
+
+## Create a Redux State Slice
+Wait! this is new. Where did slice came from? lets describe it further. You can think of slice in this manner, this is a codeblock that holds you reducer and as well as actions. Let's compare your application with a pizza. But this pizza is cut into multiple slice and all the slices are different. Because this is a special pizza, the slices are taken from different pizzas to make a whole new. You can compare any slice to a different reducer that is responsible for only one specific state.
+
+Let's create a file named ```/src/redux/todoSlice.js``` and import the ```createSlice``` API from Redux toolkit. A slice is comprised of ```name```, ```initialState``` and ```reducers```.
+
+```JSX
+import { createSlice } from "@reduxjs/toolkit";
+
+export const todoSlice = createSlice({
+  name: "todos",
+  initialState: [
+    { id: 1, title: "learn @reduxjs/toolkit", completed: false },
+    { id: 2, title: "learn react-redux", completed: false },
+    { id: 3, title: "learn about store", completed: false },
+    { id: 4, title: "write a blog about redux", completed: true }
+  ],
+  reducers: {
+    addTodo: (state, action) => {
+      const todo = {
+        id: new Date().toLocaleString(),
+        title: action.payload.title,
+        completed: false
+      };
+      state.push(todo);
+    }
+  }
+});
+
+export const { addTodo } = todoSlice.actions;
+
+export default todoSlice.reducer;
+
+```
+
+The ```initialState``` holds the applications initial states. And ```reducers``` holds the reducer actions. You can see that there is an ```addTodo`` action in this codeblock. What this does is it creates a new todo object using the title field in payload that is passed down from anywhere in the application and updates the state. If you face difficulties in understanding payload, then I will suggest to take a look at _React Reducer_ and then continue with this doc.
+
+We need to export the reducer by default and also the actions seperately, so that it can be imported in any file within the applicatin directory.
+
