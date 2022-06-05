@@ -23,5 +23,20 @@ Let's try to understand it using an example. Our characters name is John.
 
 **[Action]** : After hearing upon his request, the bank manager asks John for a check and tells one of his employee to take out some money from the vault and update Johns account. This can be compared to an action in redux. Reducers uses action to update states. And actions can be dispatched from anywhere in the application.
 
-### Learning through example
-
+### Installation
+We will be using @reduxjs/toolkit, which is a standard way for writing redux logic now. To get started create a react application with ```create-react-app```. Now we have to install redux packages. Open a terminal within the project directory and type
+```
+npm install @reduxjs/toolkit react-redux
+```
+or if you use yarn then type
+```
+yarn add @reduxjs/toolkit react-redux
+```
+### Create an Store
+First of all, create a new folder in your ```/src``` directory. Let's name it as redux. Within redux directory create a file named ```/src/redux/store.js```. Paste the code from below within that file.
+```jsx
+import { configureStore } from '@reduxjs/toolkit';
+export default configureStore({
+  reducer:{}
+});
+```
