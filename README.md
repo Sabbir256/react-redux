@@ -18,7 +18,7 @@ graph TD;
     Dispatch-->Store;
 ```
 
-What redux does is, it maintains a single source of truth for your application. The states are kept at a store, and you can not modify states directly. You have to dispatch an action to change any state. And reducers are the way to do so. Now, you are confused. What is a store, action and reducers? You should be. Because redux is all about these 3 things. I will try to describe it in simple terms.
+What redux does is, it maintains a single source of truth for your application. The states are kept at a store, and you can not modify states directly. You have to dispatch an action to change any state. And reducers are the way to do so. Data is taken from state and shown in the UI. And any event that changes a state is handeld through event handlers. Event handlers dispatches an action to the reducer that is kept into the store. And the reducer processes the action and updates the state. Now, you are confused. What is a store, action and reducers? You should be. Because redux is all about these 3 things. I will try to describe it in simple terms.
 
 ## Describe Redux to a 5 year old
 The key points to remember about redux are:
@@ -54,7 +54,7 @@ export default configureStore({
 Initially, the reducer object is empty. We can add as many reducers as we want within this object. We will populate it as we go along the project.
 
 ## Provide the Redux Store to React 
-Once the store has been created, we need to make it available to the components of the application. If you are familiar with React Context, then you know that we need to wrap the App component with context provider to make it available to all components. Same logic is applied here, but we apply it in the top level, in ```/src/index.js```. We import ```<Provider>``` from react-redux and wrap the ``<App/>`` component with it.
+Once the store has been created, we need to make it available to the components of the application. If you are familiar with React Context, then you know that we need to wrap the App component with context provider to make it available to all components. Same logic is applied here, but we apply it in the top level, in ```/src/index.js```. We import ```<Provider>``` from react-redux and wrap the ``<App/>`` component with it. This way, the store can be accessed from anywhere in the project directory.
 
 ```JSX
 import { StrictMode } from "react";
@@ -78,7 +78,11 @@ root.render(
 ```
 
 ## Create a Redux State Slice
-Wait! this is new. Where did slice came from? lets describe it further. You can think of slice in this manner, this is a codeblock that holds you reducer and as well as actions. Let's compare your application with a pizza. But this pizza is cut into multiple slice and all the slices are different. Because this is a special pizza, the slices are taken from different pizzas to make a whole new. You can compare any slice to a different reducer that is responsible for only one specific state.
+Wait! this is new. Where did slice came from? let's talk a bit about it. You can think of ```slice``` in this manner, this is a codeblock that holds you reducer and as well as actions. Let's compare your application stores ```reducer``` object with a pizza. But this pizza is cut into multiple slices and all the slices are of different toppings. Because this is a special pizza, the slices are taken from different pizzas to make a whole new. You can compare slices to different reducers that is responsible for only one specific state. A slice holds one reducer and actions regarding that specific reducer.
+
+<p align="center">
+  <img width="350px" src="https://user-images.githubusercontent.com/29686831/172048396-f4faac4e-69e9-4e70-88b5-dcff9ed26baf.jpg">
+</p>
 
 Let's create a file named ```/src/redux/todoSlice.js``` and import the ```createSlice``` API from Redux toolkit. A slice is comprised of ```name```, ```initialState``` and ```reducers```.
 
