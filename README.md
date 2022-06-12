@@ -1,6 +1,6 @@
 # Getting started with react-redux
 
-Redux is a nightmare to many. I too had problem understanding redux when I started learning it, cause there was a lot of boilerplate code, did not understood the store properly and everything seemed too complex. But I kept at it until I got the hang of it. I will try to describe it in simple terms here, so that anyone can understand the basic of redux.
+Redux is a nightmare to many. I too had problem understanding redux when I started learning it, cause there was a lot of boilerplate code, did not understood the store properly and everything seemed too complex. But kept at it until got the hang of it. I will try to describe it in simple terms here, so that anyone can understand the basic of redux.
 
 I have created a demo project at [CodeSanxbox](https://codesandbox.io/s/redux-toolkit-q0qcyp?file=/src/index.js). It's a [todo](https://codesandbox.io/s/redux-toolkit-q0qcyp?file=/src/index.js) app that uses redux to control its state. You can follow along the project if you want.
 <p align="center">
@@ -81,7 +81,7 @@ root.render(
 Wait! this is new. Where did slice came from? let's talk a bit about it. You can think of ```slice``` in this manner, this is a codeblock that holds you reducer and as well as actions. Let's compare your application stores ```reducer``` object with a pizza. But this pizza is cut into multiple slices and all the slices are of different toppings. Because this is a special pizza, the slices are taken from different pizzas to make a whole new. You can compare slices to different reducers that is responsible for only one specific state. A slice holds one reducer and actions regarding that specific reducer.
 
 <p align="center">
-  <img width="350px" src="https://user-images.githubusercontent.com/29686831/172048396-f4faac4e-69e9-4e70-88b5-dcff9ed26baf.jpg">
+  <img width="320px" src="https://user-images.githubusercontent.com/29686831/172048396-f4faac4e-69e9-4e70-88b5-dcff9ed26baf.jpg">
 </p>
 
 Let's create a file named ```/src/redux/todoSlice.js``` and import the ```createSlice``` API from Redux toolkit. A slice is comprised of ```name```, ```initialState``` and ```reducers```.
@@ -196,3 +196,6 @@ const AddTodoForm = () => {
 
 export default AddTodoForm;
 ```
+
+### Conclusion
+This is not by far the total functionality of react. This is just for beginners, who may face a hard time with redux. Tried my best to lay it out in simple terms. If you still have some doubts left, I will suggest that you check my sample code in [CodeSandbox](https://codesandbox.io/s/redux-toolkit-q0qcyp?file=/src/index.js). There are few extra functionalities, which will clear your doubts in my opinion.
