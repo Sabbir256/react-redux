@@ -193,4 +193,4 @@ const AddTodoForm = () => {
 ```
 
 ## Conclusion
-This is not by far the total functionality of react. This is just for beginners, who may face a hard time with redux. Tried my best to lay it out in simple terms. If you still have some doubts left, I will suggest that you check my sample code in [CodeSandbox](https://codesandbox.io/s/redux-toolkit-q0qcyp?file=/src/index.js). There are few extra functionalities, which will clear your doubts in my opinion.
+This is not by far the total functionality of react-redux. This is just for beginners, who may face a hard time with redux. Tried my best to lay it out in simple terms. If you still have some doubts left, I will suggest that you check my sample code in [CodeSandbox](https://codesandbox.io/s/redux-toolkit-q0qcyp?file=/src/index.js). There are few extra functionalities, which will clear your doubts in my opinion.
