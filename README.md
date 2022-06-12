@@ -74,7 +74,6 @@ root.render(
     </Provider>
   </StrictMode>
 );
-
 ```
 
 ## Create a Redux State Slice
@@ -110,9 +109,7 @@ export const todoSlice = createSlice({
 });
 
 export const { addTodo } = todoSlice.actions;
-
 export default todoSlice.reducer;
-
 ```
 
 The ```initialState``` holds the applications initial states. And ```reducers``` holds the reducer actions. You can see that there is an ```addTodo`` action in this codeblock. What this does is it creates a new todo object using the title field in payload that is passed down from anywhere in the application and updates the state. If you face difficulties in understanding payload, then I will suggest to take a look at _React Reducer_ and then continue with this doc.
@@ -193,9 +190,7 @@ const AddTodoForm = () => {
     </form>
   );
 };
-
-export default AddTodoForm;
 ```
 
-### Conclusion
+## Conclusion
 This is not by far the total functionality of react. This is just for beginners, who may face a hard time with redux. Tried my best to lay it out in simple terms. If you still have some doubts left, I will suggest that you check my sample code in [CodeSandbox](https://codesandbox.io/s/redux-toolkit-q0qcyp?file=/src/index.js). There are few extra functionalities, which will clear your doubts in my opinion.
