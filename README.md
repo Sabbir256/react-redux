@@ -119,3 +119,80 @@ The ```initialState``` holds the applications initial states. And ```reducers```
 
 We need to export the reducer by default and also the actions seperately, so that it can be imported in any file within the applicatin directory.
 
+
+## Update the Store
+We have created the slice, but the system has no idea of its existance till now. In this stage, we have to update the store and add the reducer to the store. After only adding the store, it can provide the state wherever it is needed.
+The updated code of the ```/src/redux/store.js``` file looks like,
+
+```jsx
+import { configureStore } from "@reduxjs/toolkit";
+import todoReducer from "./todoSlice";
+
+export default configureStore({
+  reducer: {
+    todos: todoReducer
+  }
+});
+```
+
+## Acccessing the state
+We can use the ```useSelector``` react-redux hook to acces the state. In our example, the state is an array of objects. We first accessed the data and shown it in the UI like list items.
+```jsx
+import { useSelector } from "react-redux";
+
+const ListItems = () => {
+  const todos = useSelector((state) => state.todos);
+  return (
+    <div className="todos-container">
+      {todos.map((todo) => {
+        return (
+          <Item
+            key={todo.id}
+            id={todo.id}
+            title={todo.title}
+            completed={todo.completed}
+          />
+        );
+      })}
+    </div>
+  );
+};
+```
+
+## Dispatch an Action
+An action has to be dispatched to update any state. It is a simple function that takes the action function as a parameter. The action function then takes payload as its parameter.
+
+```jsx
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../redux/todoSlice";
+
+const AddTodoForm = () => {
+  const dispatch = useDispatch();
+  const [value, setValue] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (value) {
+      dispatch(
+        addTodo({
+          title: value
+        })
+      );
+      setValue("");
+    }
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="add todo ..."
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default AddTodoForm;
+```
